@@ -7,6 +7,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SMWebApp", "SMWebApp\SMWebA
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UseCases", "UseCases\UseCases.csproj", "{3733736C-B424-44A8-8452-39789AE93A95}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoreBusiness", "CoreBusiness\CoreBusiness.csproj", "{ABE6645C-5C68-46FF-A2B8-78A92A48F1C3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataInMemory", "Data\DataInMemory.csproj", "{7B88E63E-C596-4A2A-ABEA-E5F7E6EC7C99}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +25,14 @@ Global
 		{3733736C-B424-44A8-8452-39789AE93A95}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3733736C-B424-44A8-8452-39789AE93A95}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3733736C-B424-44A8-8452-39789AE93A95}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ABE6645C-5C68-46FF-A2B8-78A92A48F1C3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ABE6645C-5C68-46FF-A2B8-78A92A48F1C3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ABE6645C-5C68-46FF-A2B8-78A92A48F1C3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ABE6645C-5C68-46FF-A2B8-78A92A48F1C3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7B88E63E-C596-4A2A-ABEA-E5F7E6EC7C99}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7B88E63E-C596-4A2A-ABEA-E5F7E6EC7C99}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7B88E63E-C596-4A2A-ABEA-E5F7E6EC7C99}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7B88E63E-C596-4A2A-ABEA-E5F7E6EC7C99}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

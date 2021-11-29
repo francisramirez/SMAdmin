@@ -1,3 +1,4 @@
+using DataInMemory.Repositories;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Hosting;
@@ -10,6 +11,10 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using UseCases.Contracts;
+using UseCases.UseCaseInterfaces;
+using UseCases.ViewUsesCasesModels;
+using UseCases.ViewUsesCasesModels.Categories;
 
 namespace SMWebApp
 {
@@ -29,6 +34,15 @@ namespace SMWebApp
             services.AddRazorPages();
             services.AddServerSideBlazor();
             services.AddSingleton<WeatherForecastService>();
+
+            //Dependency for data in memory//
+            services.AddScoped<ICategoryRepository, CategoryInMemoryRepository>();
+
+
+            //Dependency for Uses Cases And Repositories //
+            services.AddTransient<IViewCategoriesUseCase, ViewCategoriesUseCases>();
+            services.AddTransient<IAddCategoriesUseCase, AddCategoriesUseCase>();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
