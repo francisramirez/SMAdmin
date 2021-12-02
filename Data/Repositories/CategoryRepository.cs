@@ -1,8 +1,10 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using CoreBusiness.Entities;
 using System.Collections.Generic;
 using UseCases.Contracts;
 using UseCases.Exceptions;
+
 
 namespace DataInMemory.Repositories
 {
@@ -46,9 +48,27 @@ namespace DataInMemory.Repositories
             categories.Add(category);
         }
 
+        public void UpdateCategory(Category category)
+        {
+            var categoryToUpdate = GetCategoryById(category.CategoryId);
+
+            if (categoryToUpdate != null) 
+            {
+                categoryToUpdate.Name = category.Name;
+                categoryToUpdate.Description = category.Description;
+            }
+               
+            
+        }
+
         public IEnumerable<Category> GetCategories()
         {
             return categories;
+        }
+
+        public Category GetCategoryById(int categoryId)
+        {
+            return categories?.FirstOrDefault(ca => ca.CategoryId == categoryId);
         }
     }
 }

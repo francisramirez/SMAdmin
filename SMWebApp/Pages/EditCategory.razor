@@ -1,0 +1,77 @@
+﻿
+@page "/editcategory/{categoryId}"
+@inject NavigationManager _navigationManager
+@inject IEditCategoryUseCase _editCategoryUseCase
+@inject IGetCategoryByIdUseCase _getCategoryByIdUseCase
+<h3>Edit Category</h3>
+<br />
+
+<EditForm Model="category" OnValidSubmit="OnValidSumit">
+    <DataAnnotationsValidator></DataAnnotationsValidator>
+    <ValidationSummary></ValidationSummary>
+
+    <div class="form-group">
+        <label for="name">
+            Name
+        </label>
+        <InputText id="name" @bind-Value="category.Name" class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <label for="description">
+            Description
+        </label>
+        <InputText id="description" @bind-Value="category.Description" class="form-control" />
+    </div>
+
+    <button type="submit" class="btn btn-primary">Save</button>
+    <button type="button" class="btn btn-danger" @onclick="OnCancel">Cancel</button>
+</EditForm>
+
+@code {
+
+
+    private CoreBusiness.Entities.Category category;
+
+    [Parameter]
+    public string CategoryId { get; set; }
+
+    protected override void OnInitialized()
+    {
+        ////category = new CoreBusiness.Entities.Category();
+        base.OnInitialized();
+    }
+
+    protected override void OnParametersSet()
+    {
+        if (int.TryParse(this.CategoryId, out int categoryId))
+        {
+            var cat = _getCategoryByIdUseCase.Execute(categoryId);
+
+
+            this.category = new CoreBusiness.Entities.Category()
+            {
+                CategoryId = cat.CategoryId,
+                Description = cat.Description,
+                Name = cat.Name
+            };
+
+        }
+
+        base.OnParametersSet();
+    }
+
+    private void OnValidSumit()
+    {
+        _editCategoryUseCase.Execute(this.category);
+        GoToCategories();
+    }
+    private void OnCancel()
+    {
+        GoToCategories();
+    }
+    void GoToCategories()
+    {
+        _navigationManager.NavigateTo("/categories");
+    }
+}

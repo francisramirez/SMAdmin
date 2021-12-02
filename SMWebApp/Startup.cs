@@ -7,6 +7,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using SMWebApp.Data;
+using SMWebApp.Dependency;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -35,13 +36,9 @@ namespace SMWebApp
             services.AddServerSideBlazor();
             services.AddSingleton<WeatherForecastService>();
 
-            //Dependency for data in memory//
-            services.AddScoped<ICategoryRepository, CategoryInMemoryRepository>();
 
-
-            //Dependency for Uses Cases And Repositories //
-            services.AddTransient<IViewCategoriesUseCase, ViewCategoriesUseCases>();
-            services.AddTransient<IAddCategoriesUseCase, AddCategoriesUseCase>();
+            //Registering Dependency Category for Uses Cases And Repositories //
+            CategoryDependency.AddCategoryDependency(services);
 
         }
 
