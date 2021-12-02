@@ -41,9 +41,14 @@ namespace DataInMemory.Repositories
             if (categories.Any(ca => ca.Name.Equals(category.Name, System.StringComparison.OrdinalIgnoreCase)))
                 throw new CategoryException("Category Exists...");
 
-            var maxCategoryId = categories.Max(ca => ca.CategoryId) + 1;
+            if (categories != null && categories.Count > 0)
+            {
+                var maxCategoryId = categories.Max(ca => ca.CategoryId) + 1;
+                category.CategoryId = maxCategoryId;
+            }
+            else
+                category.CategoryId = 1;
 
-            category.CategoryId = maxCategoryId;
 
             categories.Add(category);
         }
@@ -52,15 +57,14 @@ namespace DataInMemory.Repositories
         {
             var categoryToUpdate = GetCategoryById(category.CategoryId);
 
-            if (categoryToUpdate != null) 
+            if (categoryToUpdate != null)
             {
                 categoryToUpdate.Name = category.Name;
                 categoryToUpdate.Description = category.Description;
             }
-               
-            
-        }
 
+
+        }
         public IEnumerable<Category> GetCategories()
         {
             return categories;
@@ -69,6 +73,12 @@ namespace DataInMemory.Repositories
         public Category GetCategoryById(int categoryId)
         {
             return categories?.FirstOrDefault(ca => ca.CategoryId == categoryId);
+        }
+
+        public void RemoveCategory(int categoryId)
+        {
+            Category removeCategory = GetCategoryById(categoryId);
+            categories?.Remove(removeCategory);
         }
     }
 }

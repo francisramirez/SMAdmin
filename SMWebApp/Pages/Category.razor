@@ -1,6 +1,7 @@
 ﻿@page "/categories"
 
 @inject UseCases.UseCaseInterfaces.IViewCategoriesUseCase _viewCategoriesUseCase
+@inject UseCases.UseCaseInterfaces.IRemoveCategoryUseCase _removeCategoryUseCase
 @inject NavigationManager  _navigationManager
 
 <h3>Manage Category</h3>
@@ -18,6 +19,7 @@
                     Description
                 </th>
                 <th></th>
+
             </tr>
         </thead>
         <tbody>
@@ -30,7 +32,11 @@
                     <td>
                         @category.Description
                     </td>
-                    <td><button type="button" class="btn btn-link" @onclick="(() => EditCategory(category.CategoryId))">Edit</button></td>
+                    <td>
+                        <button type="button" class="btn btn-link" @onclick="(() => OnEditCategory(category.CategoryId))">Edit</button>
+                        <button type="button" class="btn btn-link" @onclick="(() => OnRemoveCategory(category.CategoryId))">Remove</button>
+                    </td>
+
                 </tr>
             }
 
@@ -45,16 +51,29 @@
 
     protected override void OnInitialized()
     {
-        this.categories = _viewCategoriesUseCase.GetCategories();
+        GetCategories();
         base.OnInitialized();
     }
 
-    private void OnClickAddCategory() 
+    private void OnClickAddCategory()
     {
         _navigationManager.NavigateTo("/addcategory");
     }
-    private void EditCategory(int categoryId) 
+
+    private void OnEditCategory(int categoryId)
     {
         _navigationManager.NavigateTo($"/editcategory/{categoryId}");
+    }
+
+    private void OnRemoveCategory(int categoryId)
+    {
+        _removeCategoryUseCase.RemoveCategory(categoryId);
+        GetCategories();
+        
+    }
+
+    private void GetCategories()
+    {
+        this.categories = _viewCategoriesUseCase.GetCategories();
     }
 }

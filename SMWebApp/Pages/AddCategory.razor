@@ -40,7 +40,7 @@
 
     private void OnValidSubmit()
     {
-        _addCategoriesUseCase.AddCategory(category);
+        _addCategoriesUseCase.Execute(category);
         GoToCategories();
     }
 

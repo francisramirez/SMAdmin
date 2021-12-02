@@ -8,6 +8,7 @@ namespace UseCases.ViewUsesCasesModels.Categories
         private ICategoryRepository _categoryRepository;
         public AddCategoryUseCase(ICategoryRepository categoryRepository) => _categoryRepository = categoryRepository;
 
-        public void AddCategory(Category category) => _categoryRepository.AddCategory(category);
+        public void Execute(Category entity) => _categoryRepository.AddCategory(entity);
+
     }
 }

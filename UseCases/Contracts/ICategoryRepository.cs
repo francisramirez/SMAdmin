@@ -9,6 +9,7 @@ namespace UseCases.Contracts
         public void AddCategory(Category category);
         public void UpdateCategory(Category category);
 
+        public void RemoveCategory(int categoryId);
         public Category GetCategoryById(int categoryId);
     }
 }

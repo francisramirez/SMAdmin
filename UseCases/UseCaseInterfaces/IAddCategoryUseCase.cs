@@ -2,8 +2,8 @@
 
 namespace UseCases.UseCaseInterfaces
 {
-    public interface IAddCategoriesUseCase
+    public interface IAddCategoriesUseCase : Core.IBaseUseCase<Category>
     {
-        public void AddCategory(Category category);
+       
     }
 }

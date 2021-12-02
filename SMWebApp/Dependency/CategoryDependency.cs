@@ -12,15 +12,15 @@ namespace SMWebApp.Dependency
         {
 
             //Repositories//
-
             services.AddScoped<ICategoryRepository, CategoryInMemoryRepository>();
 
             //Use Cases//
-
             services.AddTransient<IViewCategoriesUseCase, ViewCategoriesUseCases>();
             services.AddTransient<IAddCategoriesUseCase, AddCategoryUseCase>();
             services.AddTransient<IEditCategoryUseCase, EditCategoryUseCase>();
+            services.AddTransient<IRemoveCategoryUseCase, RemoveCategoryUseCase>();
             services.AddTransient<IGetCategoryByIdUseCase, GetCategoryByIdUseCase>();
+            
             return services;
         }
     }
