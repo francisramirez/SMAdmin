@@ -8,7 +8,7 @@ namespace SMWebApp.Dependency
 {
     public static class SupplierDependency
     {
-        public static IServiceCollection AddCategoryDependency(this IServiceCollection services)
+        public static IServiceCollection AddSupplierDependency(this IServiceCollection services)
         {
 
             //Repositories//

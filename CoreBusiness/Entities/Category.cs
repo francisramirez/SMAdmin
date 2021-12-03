@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 namespace CoreBusiness.Entities
 {
-    public class Category: BaseEntity
+    public class Category
     {
         [Key]
         public int CategoryId { get; set; }

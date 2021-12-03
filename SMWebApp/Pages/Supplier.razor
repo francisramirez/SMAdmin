@@ -1,0 +1,92 @@
+﻿@page "/suppliers"
+
+@inject UseCases.UseCaseInterfaces.IViewSuppliersUseCase _viewSuppliersUseCase
+@inject NavigationManager navigationManager;
+
+
+<h3>Manage Suppliers</h3>
+
+@if (suppliers != null)
+{
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>
+                    Company Name
+                </th>
+                <th>
+                    Contact Name
+                </th>
+                <th>
+                    Contact Title
+                </th>
+                <th>
+                    Address
+                </th>
+                <th>
+                    Phone
+                </th>
+                <th></th>
+
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var supplier in suppliers)
+            {
+                <tr>
+                    <td>
+                        @supplier.CompanyName
+                    </td>
+                    <td>
+                        @supplier.ContactName
+                    </td>
+                    <td>
+                        @supplier.ConctatTitle
+                    </td>
+                    <td>
+                        @supplier.Address
+                    </td>
+                    <td>
+                        @supplier.Phone
+                    </td>
+                    <td>
+                        <button type="button" class="btn btn-link" @onclick="(() => OnEdit(supplier.SupplierId))">Edit</button>
+                        <button type="button" class="btn btn-link" @onclick="(() => OnRemove(supplier.SupplierId))">Remove</button>
+                    </td>
+
+                </tr>
+            }
+
+        </tbody>
+
+    </table>
+    <button class="btn btn-primary" @onclick="OnClickAddSupplier">Add Supplier</button>
+}
+
+@code {
+    private List<CoreBusiness.Entities.Supplier> suppliers;
+
+    protected override void OnInitialized()
+    {
+        this.LoadSuppliers();
+    }
+    private void LoadSuppliers()
+    {
+        this.suppliers = _viewSuppliersUseCase.GetSuppliers();
+    }
+
+    private void OnEdit(int supplierId)
+    {
+
+    }
+
+    private void OnRemove(int supplierId)
+    {
+
+    }
+
+    private void OnClickAddSupplier()
+    {
+        navigationManager.NavigateTo("/addsupplier");
+    }
+}

@@ -2,7 +2,7 @@
 
 namespace CoreBusiness
 {
-    public class BaseEntity
+    internal class BaseEntity
     {
 
     }
