@@ -52,7 +52,7 @@ namespace DataInMemory.Repositories
 
             categories.Add(category);
         }
-
+            
         public void UpdateCategory(Category category)
         {
             var categoryToUpdate = GetCategoryById(category.CategoryId);

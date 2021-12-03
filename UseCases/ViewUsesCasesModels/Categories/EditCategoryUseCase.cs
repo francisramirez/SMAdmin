@@ -1,6 +1,7 @@
 ﻿using System;
 using CoreBusiness.Entities;
 using UseCases.Contracts;
+using UseCases.Core;
 using UseCases.UseCaseInterfaces;
 
 namespace UseCases.ViewUsesCasesModels.Categories
@@ -11,9 +12,13 @@ namespace UseCases.ViewUsesCasesModels.Categories
 
         public EditCategoryUseCase(ICategoryRepository categoryRepository) => _categoryRepository = categoryRepository;
 
-        public void Execute(Category category)
+        public UseCaseResult Execute(Category category)
         {
+            UseCaseResult result = new UseCaseResult();
+
             _categoryRepository.UpdateCategory(category);
+            
+            return result;
         }
     }
 }

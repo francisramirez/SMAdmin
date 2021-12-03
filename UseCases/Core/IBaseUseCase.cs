@@ -2,6 +2,6 @@
 {
     public interface IBaseUseCase<TEntity> where TEntity : class
     {
-        public void Execute(TEntity entity);
+        public UseCaseResult Execute(TEntity entity);
     }
 }
