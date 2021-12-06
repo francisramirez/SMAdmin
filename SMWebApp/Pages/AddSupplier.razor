@@ -1,5 +1,6 @@
 ﻿@page "/addsupplier"
-@inject NavigationManager navigationManager 
+@inject NavigationManager navigationManager
+@inject IAddSupplierUseCase _addSupplierUseCase 
 <h3>Supplier Info</h3>
 <hr />
 @if (supplier != null)
@@ -74,9 +75,13 @@
 
     private void OnValidSubmit()
     {
-
+        _addSupplierUseCase.Execute(supplier);
+        GoToSuppliers();
     }
-    private void OnCancel() { GoToSuppliers(); }
+    private void OnCancel() 
+    { 
+        GoToSuppliers(); 
+    }
     void GoToSuppliers()
     {
         navigationManager.NavigateTo("/suppliers");
