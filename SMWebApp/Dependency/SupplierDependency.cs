@@ -19,7 +19,7 @@ namespace SMWebApp.Dependency
             services.AddTransient<IAddSupplierUseCase, AddSupplierUseCase>();
             services.AddTransient<IGetSupplierByIdUseCase, GetSupplierByIdUseCase>();
             services.AddTransient<IEditSupplierUseCase, EditSupplierUseCase>();
-
+            services.AddTransient<IRemoveSupplierUseCase, RemoveSupplierUseCase>();
 
             return services;
         }

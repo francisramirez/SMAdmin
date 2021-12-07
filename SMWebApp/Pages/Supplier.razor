@@ -1,6 +1,7 @@
 ﻿@page "/suppliers"
 
 @inject UseCases.UseCaseInterfaces.IViewSuppliersUseCase _viewSuppliersUseCase
+@inject UseCases.UseCaseInterfaces.IRemoveSupplierUseCase _removeSupplierUseCase 
 @inject NavigationManager navigationManager;
 
 <h3>Manage Suppliers</h3>
@@ -81,7 +82,8 @@
 
     private void OnRemove(int supplierId)
     {
-
+        this._removeSupplierUseCase.RemoveSupplier(supplierId);
+        LoadSuppliers();
     }
 
     private void OnClickAddSupplier()
