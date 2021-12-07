@@ -17,7 +17,7 @@ namespace UseCases.ViewUsesCasesModels.Categories
             UseCaseResult result = new UseCaseResult();
 
             _categoryRepository.UpdateCategory(category);
-            
+
             return result;
         }
     }

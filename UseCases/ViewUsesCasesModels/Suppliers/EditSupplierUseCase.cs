@@ -1,47 +1,44 @@
 ﻿using System;
+using Microsoft.Extensions.Logging;
 using CoreBusiness.Entities;
 using UseCases.Contracts;
-using UseCases.UseCaseInterfaces;
-using UseCases.Exceptions;
 using UseCases.Core;
-using Microsoft.Extensions.Logging;
+using UseCases.Exceptions;
+using UseCases.UseCaseInterfaces;
 
 namespace UseCases.ViewUsesCasesModels.Suppliers
 {
-    public class AddSupplierUseCase : IAddSupplierUseCase
+    public class EditSupplierUseCase : IEditSupplierUseCase
     {
         private readonly ISupplierRepository _supplierRepository;
-        private readonly ILogger<AddSupplierUseCase> _logger;
+        private readonly ILogger<EditSupplierUseCase> _logger;
 
-        public AddSupplierUseCase(ISupplierRepository supplierRepository, 
-                                  ILogger<AddSupplierUseCase> logger)
+        public EditSupplierUseCase(ISupplierRepository supplierRepository, 
+                                   ILogger<EditSupplierUseCase> logger)
         {
             _supplierRepository = supplierRepository;
             _logger = logger;
         }
-
         public UseCaseResult Execute(Supplier entity)
         {
             UseCaseResult useCase = new UseCaseResult();
 
             try
             {
-                _supplierRepository.Add(entity);
-
+                _supplierRepository.Update(entity);
             }
-            catch (SupplierException sex)
+            catch(SupplierException sex) 
             {
                 useCase.Message = sex.Message;
                 useCase.Success = false;
-                _logger.LogError($"Error adding a supplier {sex.Message}", sex);
+                _logger.LogError($"Error updating a supplier {sex.Message}", sex);
             }
             catch (Exception ex)
             {
                 useCase.Message = ex.Message;
                 useCase.Success = false;
-                _logger.LogError($"Internal error adding a supplier {ex.Message}", ex);
+                _logger.LogError($"Internal error updating a supplier {ex.Message}", ex);
             }
-
             return useCase;
         }
     }

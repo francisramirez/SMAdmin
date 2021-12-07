@@ -17,7 +17,9 @@ namespace SMWebApp.Dependency
             //Use Cases//
             services.AddTransient<IViewSuppliersUseCase, ViewSuppliersUseCase>();
             services.AddTransient<IAddSupplierUseCase, AddSupplierUseCase>();
-           
+            services.AddTransient<IGetSupplierByIdUseCase, GetSupplierByIdUseCase>();
+            services.AddTransient<IEditSupplierUseCase, EditSupplierUseCase>();
+
 
             return services;
         }

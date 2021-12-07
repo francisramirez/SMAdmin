@@ -3,7 +3,6 @@
 @inject UseCases.UseCaseInterfaces.IViewSuppliersUseCase _viewSuppliersUseCase
 @inject NavigationManager navigationManager;
 
-
 <h3>Manage Suppliers</h3>
 
 @if (suppliers != null)
@@ -77,7 +76,7 @@
 
     private void OnEdit(int supplierId)
     {
-
+        navigationManager.NavigateTo($"/editsupplier/{supplierId}");
     }
 
     private void OnRemove(int supplierId)

@@ -35,13 +35,7 @@
 
     [Parameter]
     public string CategoryId { get; set; }
-
-    protected override void OnInitialized()
-    {
-        ////category = new CoreBusiness.Entities.Category();
-        base.OnInitialized();
-    }
-
+        
     protected override void OnParametersSet()
     {
         if (int.TryParse(this.CategoryId, out int categoryId))
