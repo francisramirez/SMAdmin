@@ -6,7 +6,8 @@ namespace DataInMemory.Repositories
 {
     public class ProductRepository : IProductRepository
     {
-        public List<Product> Entities { get => throw new System.NotImplementedException(); set => throw new System.NotImplementedException(); }
+        public List<Product> Entities { get; set; }
+
 
         public void Add(Product entity)
         {
