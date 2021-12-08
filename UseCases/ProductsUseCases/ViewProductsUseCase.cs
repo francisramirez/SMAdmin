@@ -4,10 +4,11 @@ using Microsoft.Extensions.Logging;
 using UseCases.Contracts;
 using UseCases.Core;
 using UseCases.Models;
+using UseCases.UseCaseInterfaces;
 
 namespace UseCases.ProductsUseCases
 {
-    public class ViewProductsUseCase
+    public class ViewProductsUseCase : IViewProductsUseCase
     {
         private readonly IProductRepository _productRepository;
         private readonly ICategoryRepository _categoryRepository;
@@ -24,7 +25,7 @@ namespace UseCases.ProductsUseCases
             _supplierRepository = supplierRepository;
             _logger = logger;
         }
-        public UseCaseResult GetProducts()
+        public UseCaseResult Execute()
         {
             UseCaseResult caseResult = new();
 
