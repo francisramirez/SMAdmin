@@ -39,11 +39,11 @@ namespace UseCases.ProductsUseCases
                                     CategoryId = ca.CategoryId,
                                     CategoryName = ca.Name,
                                     Name = pro.Name,
-                                    Discontinued = pro.Discontinued, 
-                                    ProductId=pro.ProductId, 
-                                    SupplierId=su.SupplierId, 
-                                    SupplierName= su.CompanyName, 
-                                    UnitPrice=pro.UnitPrice
+                                    Discontinued = pro.Discontinued,
+                                    ProductId = pro.ProductId,
+                                    SupplierId = su.SupplierId,
+                                    SupplierName = su.CompanyName,
+                                    UnitPrice = pro.UnitPrice
                                 }).ToList();
 
 
