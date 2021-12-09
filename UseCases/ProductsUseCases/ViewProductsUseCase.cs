@@ -1,8 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Microsoft.Extensions.Logging;
 using UseCases.Contracts;
-using UseCases.Core;
 using UseCases.Models;
 using UseCases.UseCaseInterfaces;
 
@@ -25,40 +25,35 @@ namespace UseCases.ProductsUseCases
             _supplierRepository = supplierRepository;
             _logger = logger;
         }
-        public UseCaseResult Execute()
+        public List<ProductListModel> Execute()
         {
-            UseCaseResult caseResult = new();
+            List<ProductListModel> products = new List<ProductListModel>();
 
             try
             {
-                var products = (from pro in _productRepository.GetAll()
-                                join ca in _categoryRepository.GetCategories() on pro.CategoryId equals ca.CategoryId
-                                join su in _supplierRepository.GetAll() on pro.SupplierId equals su.SupplierId
-                                select new ProductListModel()
-                                {
-                                    CategoryId = ca.CategoryId,
-                                    CategoryName = ca.Name,
-                                    Name = pro.Name,
-                                    Discontinued = pro.Discontinued,
-                                    ProductId = pro.ProductId,
-                                    SupplierId = su.SupplierId,
-                                    SupplierName = su.CompanyName,
-                                    UnitPrice = pro.UnitPrice
-                                }).ToList();
+                products = (from pro in _productRepository.GetAll()
+                            join ca in _categoryRepository.GetCategories() on pro.CategoryId equals ca.CategoryId
+                            join su in _supplierRepository.GetAll() on pro.SupplierId equals su.SupplierId
+                            select new ProductListModel()
+                            {
+                                CategoryId = ca.CategoryId,
+                                CategoryName = ca.Name,
+                                Name = pro.Name,
+                                Discontinued = pro.Discontinued,
+                                ProductId = pro.ProductId,
+                                SupplierId = su.SupplierId,
+                                SupplierName = su.CompanyName,
+                                UnitPrice = pro.UnitPrice
+                            }).ToList();
 
-
-                caseResult.Success = false;
-                caseResult.Data = products;
 
             }
             catch (Exception ex)
             {
-                caseResult.Success = false;
-                caseResult.Message = "Error getting the products";
-                _logger.LogError(caseResult.Message, ex);
+                _logger.LogError("Error getting the products", ex);
             }
 
-            return caseResult;
+            return products;
         }
     }
 }

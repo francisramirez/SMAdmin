@@ -1,10 +1,11 @@
 ﻿
-using UseCases.Core;
+using System.Collections.Generic;
+using UseCases.Models;
 
 namespace UseCases.UseCaseInterfaces
 {
     public interface IViewProductsUseCase
     {
-        UseCaseResult Execute();
+        List<ProductListModel> Execute();
     }
 }

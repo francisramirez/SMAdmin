@@ -1,0 +1,51 @@
+﻿@page "/products"
+@inject IViewProductsUseCase _viewProductsUseCase
+@inject NavigationManager _navigationManager
+@inject NavigationManager _navigationManager
+@using UseCases.Models;
+
+<h3>Manage Products</h3>
+
+@if (this.products != null)
+{
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>Product</th>
+                <th>Category</th>
+                <th>Supplier</th>
+                <th>UnitPrice</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var product in this.products)
+            {
+                <tr>
+                    <td>
+                        @product.Name
+                    </td>
+                    <td>
+                        @product.CategoryName
+                    </td>
+                    <td>
+                        @product.SupplierName
+                    </td>
+                    <td>
+                        @product.UnitPrice
+                    </td>
+                </tr>
+
+            }
+        </tbody>
+    </table>
+}
+
+
+@code {
+    private List<ProductListModel> products;
+
+    protected override void OnInitialized() => LoadProducts();
+
+    void LoadProducts() => this.products = this._viewProductsUseCase.Execute();
+
+}

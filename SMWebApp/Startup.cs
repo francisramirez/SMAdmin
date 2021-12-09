@@ -43,6 +43,10 @@ namespace SMWebApp
             //Registering Dependency Supplier for Uses Cases And Repositories //
             SupplierDependency.AddSupplierDependency(services);
 
+
+            //Registering Dependency Product for Uses Cases And Repositories //
+            ProductDependency.AddProductDependency(services);
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
