@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UseCases.Contracts;
 using System.Linq;
 using UseCases.Exceptions;
+using System.Linq.Expressions;
+using System;
 
 namespace DataInMemory.Repositories
 {
@@ -46,8 +48,8 @@ namespace DataInMemory.Repositories
         }
         public void Add(Supplier supplier)
         {
-            if (Entities.Any(sp => sp.CompanyName.Equals(supplier.CompanyName, System.StringComparison.OrdinalIgnoreCase)))
-                throw new SupplierException("Supplier Exstis..");
+            if (Exists(sp => sp.CompanyName.Equals(supplier.CompanyName, System.StringComparison.OrdinalIgnoreCase)))
+                throw new SupplierException("Supplier exists..");
 
             if (Entities != null && Entities.Count > 0)
             {
@@ -63,7 +65,7 @@ namespace DataInMemory.Repositories
 
         public IEnumerable<Supplier> GetAll() => this.Entities;
 
-        public Supplier GetById(int supplierId) => this.Entities.FirstOrDefault(sp => sp.SupplierId == supplierId);
+        public Supplier GetById(int supplierId) => this.Entities.SingleOrDefault(sp => sp.SupplierId == supplierId);
 
         public void Remove(int supplierId)
         {
@@ -89,6 +91,11 @@ namespace DataInMemory.Repositories
                 supplierUpdate.Fax = supplier.Fax;
 
             }
+        }
+
+        public bool Exists(Func<Supplier, bool> predicate)
+        {
+            return Entities.Any(predicate);
         }
     }
 }

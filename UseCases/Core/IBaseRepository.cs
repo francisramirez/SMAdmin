@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq.Expressions;
 
 namespace UseCases.Core
 {
@@ -10,5 +12,6 @@ namespace UseCases.Core
         public void Update(TEntity entity);
         public void Remove(int entityId);
         public TEntity GetById(int entityId);
+        public bool Exists(Func<TEntity, bool> predicate);
     }
 }
