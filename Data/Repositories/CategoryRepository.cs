@@ -10,10 +10,12 @@ namespace DataInMemory.Repositories
 {
     public class CategoryInMemoryRepository : ICategoryRepository
     {
-        private List<Category> categories;
+
+        public List<Category> Entities { get; set; }
+
         public CategoryInMemoryRepository()
         {
-            categories = new List<Category>()
+            Entities = new List<Category>()
             {
                 new Category()
                 {
@@ -35,50 +37,45 @@ namespace DataInMemory.Repositories
                 }
             };
         }
+        public IEnumerable<Category> GetAll() => this.Entities;
 
-        public void AddCategory(Category category)
+        public void Add(Category entity)
         {
-            if (categories.Any(ca => ca.Name.Equals(category.Name, System.StringComparison.OrdinalIgnoreCase)))
+            if (Entities.Any(ca => ca.Name.Equals(entity.Name, System.StringComparison.OrdinalIgnoreCase)))
                 throw new CategoryException("Category Exists...");
 
-            if (categories != null && categories.Count > 0)
+            if (Entities != null && Entities.Count > 0)
             {
-                var maxCategoryId = categories.Max(ca => ca.CategoryId) + 1;
-                category.CategoryId = maxCategoryId;
+                var maxCategoryId = Entities.Max(ca => ca.CategoryId) + 1;
+                entity.CategoryId = maxCategoryId;
             }
             else
-                category.CategoryId = 1;
+                entity.CategoryId = 1;
 
 
-            categories.Add(category);
+            Entities.Add(entity);
+
         }
-            
-        public void UpdateCategory(Category category)
+
+        public void Update(Category entity)
         {
-            var categoryToUpdate = GetCategoryById(category.CategoryId);
+            var categoryToUpdate = GetById(entity.CategoryId);
 
             if (categoryToUpdate != null)
             {
-                categoryToUpdate.Name = category.Name;
-                categoryToUpdate.Description = category.Description;
+                categoryToUpdate.Name = entity.Name;
+                categoryToUpdate.Description = entity.Description;
             }
-
-
         }
-        public IEnumerable<Category> GetCategories()
+
+        public void Remove(int entityId)
         {
-            return categories;
+            Category removeCategory = GetById(entityId);
+            Entities?.Remove(removeCategory);
         }
 
-        public Category GetCategoryById(int categoryId)
-        {
-            return categories?.FirstOrDefault(ca => ca.CategoryId == categoryId);
-        }
+        public Category GetById(int entityId) => Entities?.SingleOrDefault(ca => ca.CategoryId == entityId);
 
-        public void RemoveCategory(int categoryId)
-        {
-            Category removeCategory = GetCategoryById(categoryId);
-            categories?.Remove(removeCategory);
-        }
+        public bool Exists(Func<Category, bool> predicate) => Entities.Any(predicate);
     }
 }

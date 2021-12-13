@@ -40,11 +40,11 @@ namespace SMTest
             };
 
 
-            _categoryRepMock.Setup(x => x.GetCategories())
+            _categoryRepMock.Setup(x => x.GetAll())
                             .Returns(expectCategories);
 
             //Act
-            var custumers = viewCategoriesUseCases.GetCategories();
+            var custumers = viewCategoriesUseCases.Execute();
 
 
             //Assert

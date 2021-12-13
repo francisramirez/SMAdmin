@@ -11,6 +11,6 @@ namespace UseCases.ViewUsesCasesModels.Categories
 
         public RemoveCategoryUseCase(ICategoryRepository categoryRepository) => _categoryRepository = categoryRepository;
 
-        public void RemoveCategory(int categoryId) => _categoryRepository.RemoveCategory(categoryId);
+        public void RemoveCategory(int categoryId) => _categoryRepository.Remove(categoryId);
     }
 }

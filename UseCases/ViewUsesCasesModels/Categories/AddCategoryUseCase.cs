@@ -24,7 +24,7 @@ namespace UseCases.ViewUsesCasesModels.Categories
 
             try
             {
-                _categoryRepository.AddCategory(entity);
+                _categoryRepository.Add(entity);
             }
             catch (CategoryException cex) 
             {

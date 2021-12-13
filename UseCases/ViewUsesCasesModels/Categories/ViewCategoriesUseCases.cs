@@ -11,6 +11,6 @@ namespace UseCases.ViewUsesCasesModels.Categories
         private readonly ICategoryRepository _categoryRepository;
         public ViewCategoriesUseCases(ICategoryRepository categoryRepository) => _categoryRepository = categoryRepository;
 
-        public List<Category> GetCategories() => _categoryRepository.GetCategories().ToList();
+        public List<Category> Execute() => _categoryRepository.GetAll().ToList();
     }
 }

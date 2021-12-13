@@ -12,7 +12,7 @@ namespace UseCases.ViewUsesCasesModels.Categories
         public GetCategoryByIdUseCase(ICategoryRepository categoryRepository) => this.categoryRepository = categoryRepository;
         public Category Execute(int categoryId)
         {
-            return categoryRepository.GetCategoryById(categoryId);
+            return categoryRepository.GetById(categoryId);
         }
     }
 }

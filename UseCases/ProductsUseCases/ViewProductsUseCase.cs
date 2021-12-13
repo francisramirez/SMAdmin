@@ -32,7 +32,7 @@ namespace UseCases.ProductsUseCases
             try
             {
                 products = (from pro in _productRepository.GetAll()
-                            join ca in _categoryRepository.GetCategories() on pro.CategoryId equals ca.CategoryId
+                            join ca in _categoryRepository.GetAll() on pro.CategoryId equals ca.CategoryId
                             join su in _supplierRepository.GetAll() on pro.SupplierId equals su.SupplierId
                             select new ProductListModel()
                             {

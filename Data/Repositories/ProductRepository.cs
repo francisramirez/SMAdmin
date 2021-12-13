@@ -20,22 +20,22 @@ namespace DataInMemory.Repositories
                      CategoryId=1,
                      Discontinued=false,
                      Name="Product HHYDP",
-                     SupplierId=1,
-                     UnitPrice =18,
+                     SupplierId= 1,
+                     UnitPrice = 18,
                  },
                  new Product()
                  {
                      ProductId= 2,
-                     CategoryId=1,
+                     CategoryId= 1,
                      Discontinued=true,
                      Name="Product IMEHJ",
-                     SupplierId=1,
-                     UnitPrice =10,
+                     SupplierId= 1,
+                     UnitPrice = 10,
                  },
                  new Product()
                  {
                      ProductId= 3,
-                     CategoryId=2,
+                     CategoryId= 2,
                      Discontinued=false,
                      Name="Product IMEHJ",
                      SupplierId=1,
