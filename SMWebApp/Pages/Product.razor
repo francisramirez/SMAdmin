@@ -14,7 +14,8 @@
                 <th>Product</th>
                 <th>Category</th>
                 <th>Supplier</th>
-                <th>UnitPrice</th>
+                <th>Unit Price</th>
+                <th></th>
             </tr>
         </thead>
         <tbody>
@@ -31,21 +32,43 @@
                         @product.SupplierName
                     </td>
                     <td>
-                        @product.UnitPrice
+                        @(Math.Round(product.UnitPrice,2))
+                    </td>
+                    <td>
+                        <button type="button" class="btn btn-link" @onclick="(() => OnEditProduct(product.ProductId))">Edit</button>
+                        <button type="button" class="btn btn-link" @onclick="(() => OnRemoveProduct(product.ProductId))">Remove</button>
+
                     </td>
                 </tr>
 
             }
         </tbody>
     </table>
+
 }
+<br />
+<button class="btn btn-primary" @onclick="OnClickAddProduct">Add Product</button>
 
 
 @code {
+   
     private List<ProductListModel> products;
 
     protected override void OnInitialized() => LoadProducts();
 
     void LoadProducts() => this.products = this._viewProductsUseCase.Execute();
 
+
+    public void OnClickAddProduct()
+    {
+        _navigationManager.NavigateTo("/addproduct");
+    }
+    public void OnEditProduct(int productId)
+    {
+        _navigationManager.NavigateTo($"/editproduct/{productId}");
+    }
+    public void OnRemoveProduct(int productId)
+    {
+
+    }
 }

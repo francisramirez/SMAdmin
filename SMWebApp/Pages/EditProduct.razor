@@ -1,0 +1,91 @@
+﻿@page "/editproduct/{productId}"
+@inject NavigationManager _navigationManager
+@inject IEditProductUseCase _editProductUseCase
+@inject IGetProductByIdUseCase _getProductByIdUseCase
+@inject IViewCategoriesUseCase _viewCategoriesUseCase
+@inject IViewSuppliersUseCase _viewSuppliersUseCase
+<h3>Edit Product</h3>
+
+<EditForm Model="product" OnValidSubmit="OnValidSubmit">
+    <DataAnnotationsValidator></DataAnnotationsValidator>
+    <ValidationSummary></ValidationSummary>
+
+    <div class="form-group">
+        <label for="name">Name</label>
+        <InputText id="name" @bind-Value="product.Name" class="form-control-sm" />
+    </div>
+    <div class="form-group">
+        <label for="category">Cateogry</label>
+        <select id="category" @bind="product.CategoryId" class="form-control-sm">
+            <option value="0">Select</option>
+            @foreach (var cat in categories)
+            {
+                <option value="@cat.CategoryId">@cat.Name</option>
+            }
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="supplier">Supplier</label>
+        <select id="supplier" @bind="product.SupplierId" class="form-control-sm">
+            <option value="0">Select</option>
+
+            @foreach (var sup in suppliers)
+            {
+                <option value="@sup.SupplierId">@sup.CompanyName</option>
+            }
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="unitPrice">Unit Price</label>
+        <InputNumber id="unitPrice" @bind-Value="product.UnitPrice" />
+    </div>
+    <div class="form-group">
+        <label for="discontinued">Discontinued</label>
+        <InputCheckbox id="discontinued" @bind-Value="product.Discontinued" class="form-check" />
+    </div>
+    <div class="float-right">
+        <button type="submit" class="btn btn-primary">Save</button>
+        <button type="button" class="btn btn-danger" @onclick="OnCancel">Cancel</button>
+    </div>
+
+</EditForm>
+
+
+
+@code {
+    private CoreBusiness.Entities.Product product;
+    private List<CoreBusiness.Entities.Category> categories;
+    private List<CoreBusiness.Entities.Supplier> suppliers;
+
+    [Parameter]
+    public string ProductId { get; set; }
+
+    protected override void OnInitialized()
+    {
+        this.categories = _viewCategoriesUseCase.Execute();
+        this.suppliers = _viewSuppliersUseCase.GetSuppliers();
+    }
+
+    protected override void OnParametersSet()
+    {
+        if (int.TryParse(this.ProductId, out int productId))
+        {
+            this.product = _getProductByIdUseCase.Execute(productId);
+        }
+    }
+
+    protected void OnValidSubmit()
+    {
+        _editProductUseCase.Execute(product);
+        GoToProductList();
+    }
+
+    protected void OnCancel()
+    {
+        GoToProductList();
+    }
+    void GoToProductList()
+    {
+        _navigationManager.NavigateTo("/products");
+    }
+}
