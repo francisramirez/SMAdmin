@@ -20,7 +20,7 @@ namespace SMWebApp.Dependency
             services.AddTransient<IAddProductUseCase, AddProductUseCase>();
             services.AddTransient<IGetProductByIdUseCase, GetProductByIdUseCase>();
             services.AddTransient<IEditProductUseCase, EditProductUseCase>();
-
+            services.AddTransient<IRemoveProductUseCase, RemoveProductUseCase>();
             return services;
         }
     }

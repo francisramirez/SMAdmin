@@ -1,6 +1,6 @@
 ﻿@page "/products"
 @inject IViewProductsUseCase _viewProductsUseCase
-@inject NavigationManager _navigationManager
+@inject IRemoveProductUseCase _removeProductUseCase
 @inject NavigationManager _navigationManager
 @using UseCases.Models;
 
@@ -69,6 +69,7 @@
     }
     public void OnRemoveProduct(int productId)
     {
-
+        _removeProductUseCase.RemoveProduct(productId);
+        LoadProducts();
     }
 }
