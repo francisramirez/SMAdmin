@@ -14,32 +14,36 @@
                 <th>Product</th>
                 <th>Category</th>
                 <th>Supplier</th>
-                <th>Unit Price</th>
+                <th class="text-center">Quantity</th>
+                <th class="text-center">Unit Price</th>
                 <th></th>
             </tr>
         </thead>
         <tbody>
             @foreach (var product in this.products)
             {
-                <tr>
-                    <td>
-                        @product.Name
-                    </td>
-                    <td>
-                        @product.CategoryName
-                    </td>
-                    <td>
-                        @product.SupplierName
-                    </td>
-                    <td>
-                        @(Math.Round(product.UnitPrice,2))
-                    </td>
-                    <td>
-                        <button type="button" class="btn btn-link" @onclick="(() => OnEditProduct(product.ProductId))">Edit</button>
-                        <button type="button" class="btn btn-link" @onclick="(() => OnRemoveProduct(product.ProductId))">Remove</button>
+            <tr>
+                <td>
+                    @product.Name
+                </td>
+                <td>
+                    @product.CategoryName
+                </td>
+                <td>
+                    @product.SupplierName
+                </td>
+                <td class="text-center">
+                    @product.Quantity
+                </td>
+                <td class="text-center">
+                    @(Math.Round(product.UnitPrice,2))
+                </td>
+                <td>
+                    <button type="button" class="btn btn-link" @onclick="(() => OnEditProduct(product.ProductId))">Edit</button>
+                    <button type="button" class="btn btn-link" @onclick="(() => OnRemoveProduct(product.ProductId))">Remove</button>
 
-                    </td>
-                </tr>
+                </td>
+            </tr>
 
             }
         </tbody>
