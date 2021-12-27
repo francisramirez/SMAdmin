@@ -10,6 +10,6 @@ namespace UseCases.ProductsUseCases
     {
         private readonly IProductRepository _productRepository;
         public ViewProductsByCategoryIdUseCase(IProductRepository productRepository) => _productRepository = productRepository;
-        public List<Product> GetProductsByCategoryId(int categoryId) => _productRepository.GetProductByCategoryId(categoryId).ToList();
+        public List<Product> Execute(int categoryId) => _productRepository.GetProductByCategoryId(categoryId).ToList();
     }
 }

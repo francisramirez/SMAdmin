@@ -5,6 +5,6 @@ namespace UseCases.UseCaseInterfaces
 {
     public interface IViewProductsByCategoryIdUseCase
     {
-        public List<Product> GetProductsByCategoryId(int categoryId);
+        public List<Product> Execute(int categoryId);
     }
 }

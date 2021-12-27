@@ -22,6 +22,7 @@ namespace DataInMemory.Repositories
                      Name="Product HHYDP",
                      SupplierId= 1,
                      UnitPrice = 18,
+                     Quantity= 5
                  },
                  new Product()
                  {
@@ -30,7 +31,8 @@ namespace DataInMemory.Repositories
                      Discontinued=true,
                      Name="Product IMEHJ",
                      SupplierId= 1,
-                     UnitPrice = 10,
+                     UnitPrice = 10, 
+                     Quantity=3
                  },
                  new Product()
                  {
@@ -39,7 +41,8 @@ namespace DataInMemory.Repositories
                      Discontinued=false,
                      Name="Product IMEHJ",
                      SupplierId=1,
-                     UnitPrice =19,
+                     UnitPrice =19, 
+                     Quantity=8
                  },
             };
         }
@@ -78,7 +81,7 @@ namespace DataInMemory.Repositories
                 produtToUpdate.Discontinued = entity.Discontinued;
                 produtToUpdate.SupplierId = entity.SupplierId;
                 produtToUpdate.UnitPrice = entity.UnitPrice;
-               
+
             }
         }
         public bool Exists(Func<Product, bool> predicate)

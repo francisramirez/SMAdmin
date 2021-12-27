@@ -40,6 +40,11 @@
             <label for="unitPrice">Unit Price</label>
             <InputNumber id="unitPrice" @bind-Value="product.UnitPrice" />
         </div>
+
+        <div class="form-group">
+            <label for="quantity">Quantity</label>
+            <InputNumber id="unitPrice" @bind-Value="product.Quantity" />
+        </div>
         <div class="form-group">
             <label for="discontinued">Discontinued</label>
             <InputCheckbox id="discontinued" @bind-Value="product.Discontinued" class="form-check" />
@@ -51,7 +56,6 @@
 
     </EditForm>
 }
-
 
 @code {
     private CoreBusiness.Entities.Product product;
@@ -73,7 +77,7 @@
     {
         this.GoToProductList();
     }
-    void GoToProductList() 
+    void GoToProductList()
     {
         _navigationManager.NavigateTo("/products");
     }

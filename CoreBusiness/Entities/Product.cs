@@ -16,7 +16,10 @@ namespace CoreBusiness.Entities
         
         [Required]
         public decimal UnitPrice { get; set; }
-        
+
+        [Required]
+        public int Quantity { get; set; }
+
         [Required]
         public bool Discontinued { get; set; }
     }

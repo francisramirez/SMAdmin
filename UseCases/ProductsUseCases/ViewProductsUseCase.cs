@@ -43,7 +43,8 @@ namespace UseCases.ProductsUseCases
                                 ProductId = pro.ProductId,
                                 SupplierId = su.SupplierId,
                                 SupplierName = su.CompanyName,
-                                UnitPrice = pro.UnitPrice
+                                UnitPrice = pro.UnitPrice, 
+                                Quantity= pro.Quantity
                             }).ToList();
 
 
