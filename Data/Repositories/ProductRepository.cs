@@ -85,5 +85,10 @@ namespace DataInMemory.Repositories
         {
             return Entities.Any(predicate);
         }
+
+        public IEnumerable<Product> GetProductByCategoryId(int categoryId)
+        {
+            return this.Entities.Where(ca => ca.CategoryId == categoryId);
+        }
     }
 }
