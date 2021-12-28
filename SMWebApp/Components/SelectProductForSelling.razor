@@ -28,7 +28,9 @@
         <tbody>
             @foreach (var product in Products)
             {
-                <tr style="cursor:pointer" @onclick="(() => OnSelectProduct(product))">
+                <tr @onclick="(() => OnSelectProduct(product))"
+                    style="@(product.ProductId == seletedProductId ? "background-color:beige; cursor:pointer;" : "cursor:pointer")">
+                    
                     <td>
                         @product.Name
                     </td>
@@ -44,6 +46,7 @@
 
 @code {
     private int categorySeletedId;
+    private int seletedProductId=0;
 
     [Parameter]
     public EventCallback<Product> OnProductSeleted { get; set; }
@@ -69,6 +72,10 @@
 
     void LoadCategories() => this.Categories = _viewCategoriesUseCase.Execute();
 
-    private void OnSelectProduct(Product product) => OnProductSeleted.InvokeAsync(product);
-   
+    private void OnSelectProduct(Product product)
+    {
+        this.seletedProductId = product.ProductId;
+        OnProductSeleted.InvokeAsync(product);
+    }
+
 }

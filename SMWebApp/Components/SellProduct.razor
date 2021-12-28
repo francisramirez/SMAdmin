@@ -1,7 +1,12 @@
 ﻿@inject IGetProductByIdUseCase _getProductByIdUseCase
 @if (ProductToSell != null)
 {
-    <EditForm Model="ProductToSell" OnInvalidSubmit="OnSellProduct">
+    @if (!string.IsNullOrWhiteSpace(errorMessage))
+    {
+        <div class="alert alert-danger">@errorMessage</div>
+    }
+    <br />
+    <EditForm Model="ProductToSell" OnValidSubmit="OnSellProduct">
         <DataAnnotationsValidator></DataAnnotationsValidator>
         <ValidationSummary></ValidationSummary>
         <div class="form-group">
@@ -38,11 +43,8 @@
 
 
         </div>
+        <button type="submit" class="btn btn-primary">Sell</button>
     </EditForm>
-    @if (!string.IsNullOrWhiteSpace(errorMessage))
-    {
-        <div class="alert alert-danger">@errorMessage</div>
-    }
 
 }
 
@@ -73,13 +75,16 @@
         }
 
     }
-
     private void OnSellProduct()
     {
 
         var product = _getProductByIdUseCase.Execute(this.SelectedProduct.ProductId);
 
-        if (product.Quantity >= this.ProductToSell.Quantity)
+        if (this.ProductToSell.Quantity <= 0)
+        {
+            this.errorMessage = "The quantity has to be greater than zero";
+        }
+        else if (product.Quantity >= this.ProductToSell.Quantity)
         {
             this.OnProductSold.InvokeAsync(this.ProductToSell);
             this.errorMessage = string.Empty;
