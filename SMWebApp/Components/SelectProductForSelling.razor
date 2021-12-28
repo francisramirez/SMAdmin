@@ -28,7 +28,7 @@
         <tbody>
             @foreach (var product in Products)
             {
-                <tr>
+                <tr style="cursor:pointer" @onclick="(() => OnSelectProduct(product))">
                     <td>
                         @product.Name
                     </td>
@@ -44,10 +44,16 @@
 
 @code {
     private int categorySeletedId;
-    
+
+    [Parameter]
+    public EventCallback<Product> OnProductSeleted { get; set; }
+
     public int CategorySeletedId
     {
-        get { return this.categorySeletedId; }
+        get
+        {
+            return this.categorySeletedId;
+        }
         set
         {
             this.categorySeletedId = value;
@@ -63,4 +69,6 @@
 
     void LoadCategories() => this.Categories = _viewCategoriesUseCase.Execute();
 
+    private void OnSelectProduct(Product product) => OnProductSeleted.InvokeAsync(product);
+   
 }

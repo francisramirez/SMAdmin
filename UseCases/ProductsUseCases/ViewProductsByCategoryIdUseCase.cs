@@ -1,5 +1,4 @@
 ﻿using CoreBusiness.Entities;
-using Microsoft.Extensions.Logging;
 using System.Collections.Generic;
 using UseCases.Contracts;
 using UseCases.UseCaseInterfaces;

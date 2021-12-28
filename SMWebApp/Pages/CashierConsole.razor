@@ -1,13 +1,25 @@
 ﻿@page "/cashier-console"
 <h3>Cashier Console</h3>
 <div class="row">
-    <div class="col-4">
-        <SelectProductForSelling></SelectProductForSelling>
+    <div class="col-4"> 
+        <SelectProductForSelling OnProductSeleted="SelectProduct"></SelectProductForSelling>
+        <SellProduct SelectedProduct="selectedProduct" OnProductSold="SellProduct"></SellProduct>
     </div>
     <div class="col">
         Place Holder
     </div>
 </div>
 @code {
+
+    private CoreBusiness.Entities.Product selectedProduct;
+
+    private void SelectProduct(CoreBusiness.Entities.Product product)
+    {
+        this.selectedProduct = product;
+    }
+    private void SellProduct(CoreBusiness.Entities.Product product)
+    {
+
+    }
 
 }
