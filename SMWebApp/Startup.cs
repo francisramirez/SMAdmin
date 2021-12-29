@@ -43,9 +43,12 @@ namespace SMWebApp
             //Registering Dependency Supplier for Uses Cases And Repositories //
             SupplierDependency.AddSupplierDependency(services);
 
-
             //Registering Dependency Product for Uses Cases And Repositories //
             ProductDependency.AddProductDependency(services);
+
+            //Registering Dependency Sell Product for Uses Cases And Repositories //
+            SellProductDependency.AddSellProductDependency(services);
+
 
         }
 
