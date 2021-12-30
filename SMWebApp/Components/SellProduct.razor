@@ -73,6 +73,10 @@
                 UnitPrice = this.SelectedProduct.UnitPrice
             };
         }
+        else
+        {
+            this.ProductToSell = null;
+        }
 
     }
 
@@ -90,13 +94,13 @@
             this.OnProductSold.InvokeAsync(this.ProductToSell);
             this.errorMessage = string.Empty;
 
-           _sellProductUseCase.Execute(new SellProductModel()
+            _sellProductUseCase.Execute(new SellProductModel()
             {
                 ProductId = this.ProductToSell.ProductId,
                 QtyToSell = this.ProductToSell.Quantity
 
             });
-           
+
         }
         else
         {

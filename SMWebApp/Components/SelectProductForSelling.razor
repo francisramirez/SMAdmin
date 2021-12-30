@@ -61,6 +61,7 @@
         {
             this.categorySeletedId = value;
             Products = this._viewProductsByCategoryIdUseCase.Execute(this.categorySeletedId);
+            this.OnSelectProduct(null);
             StateHasChanged();
         }
     }
@@ -74,8 +75,11 @@
 
     private void OnSelectProduct(Product product)
     {
-        this.seletedProductId = product.ProductId;
         OnProductSeleted.InvokeAsync(product);
+        
+        if (product != null)
+            this.seletedProductId = product.ProductId;
+
     }
 
 }
